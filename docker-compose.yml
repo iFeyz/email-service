@@ -1,0 +1,37 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3030:3030"  # HTTP
+      - "3031:3031"  # WebSocket
+      - "3032:3032"  # gRPC
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/email_service
+      - RUST_LOG=info
+      - SMTP_SERVER=smtp.example.com
+      - SMTP_PORT=587
+      - SMTP_USERNAME=your_username
+      - SMTP_PASSWORD=your_password
+      - SENDER_EMAIL=sender@example.com
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=email_service
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

@@ -1,0 +1,19 @@
+syntax = "proto3";
+package email;
+
+service EmailService {
+    rpc SendEmail (EmailRequest) returns (EmailResponse);
+}
+
+message EmailRequest {
+    string to = 1;
+    string subject = 2;
+    string content = 3;
+    map<string, string> metadata = 4;
+}
+
+message EmailResponse {
+    string message_id = 1;
+    string status = 2;
+    string timestamp = 3;
+} 

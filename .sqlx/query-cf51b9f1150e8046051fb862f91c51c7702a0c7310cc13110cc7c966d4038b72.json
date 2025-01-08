@@ -1,0 +1,12 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n            CREATE TABLE IF NOT EXISTS emails (\n                id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),\n                to_address TEXT NOT NULL,\n                subject TEXT NOT NULL,\n                content TEXT NOT NULL,\n                sent_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP\n            )\n            ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": []
+  },
+  "hash": "cf51b9f1150e8046051fb862f91c51c7702a0c7310cc13110cc7c966d4038b72"
+}
