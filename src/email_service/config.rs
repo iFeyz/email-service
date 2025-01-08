@@ -10,11 +10,11 @@ pub struct SmtpConfig {
 impl Default for SmtpConfig {
     fn default() -> Self {
         Self {
-            server: "ssl0.ovh.net".to_string(),
+            server: "YOUR_SMTP_SERVER".to_string(),
             port: 465,
-            username: "sender@wayfe.store".to_string(),
-            password: "wayfesender".to_string(),
-            sender_email: "sender@wayfe.store".to_string(),
+            username: "YOUR_SMTP_USERNAME".to_string(),
+            password: "YOUR_SMTP_PASSWORD".to_string(),
+            sender_email: "YOUR_SENDER_EMAIL".to_string(),
         }
     }
 }
